@@ -1,7 +1,14 @@
+import { Routes, Route } from 'react-router'
+import { DashboardPage } from '@/pages/DashboardPage'
+
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <>
+      <Routes>
+        <Route index element={<DashboardPage />} />
+      </Routes>
+    </>
   )
 }
 

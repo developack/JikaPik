@@ -1,1 +1,85 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+@font-face {
+    font-family: "Yekan Bakh";
+    src:
+      url("../public/fonts/yekan-bakh/YekanBakhFaNum-VF.woff2") format("woff2"),
+      url("../public/fonts/yekan-bakh/YekanBakhFaNum-VF.woff") format("woff");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    /* Font */
+    --font-yekan: "Yekan Bakh", sans-serif;
+
+    /* Background */
+    --color-body-bg: #F8FAFC;
+    --color-surface: #FFFFFF;
+
+    /* Border */
+    --color-border: #E4E4E7;
+
+    /* Text */
+    --color-text: #18181B;
+    --color-text-secondary: #71717A;
+
+    /* Primary / Accent */
+    --color-primary: #6366F1;
+    --color-primary-hover: #4F46E5;
+    --color-primary-shadow: #6366F138;
+
+    /* Status */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+}
+  
+@layer base {
+    html.dark {
+        /* Background */
+        --color-body-bg: #09090B;
+        --color-surface: #18181B;
+
+        /* Border */
+        --color-border: #27272A;
+
+        /* Text */
+        --color-text: #FAFAFA;
+        --color-text-secondary: #A1A1AA;
+
+        /* Primary / Accent */
+        --color-primary: #818CF8;
+        --color-primary-hover: #6366F1;
+        --color-primary-shadow: #6366F138;
+
+        /* Status */
+        --color-success: #10B981;
+        --color-warning: #F59E0B;
+        --color-error: #EF4444;
+        --color-info: #3B82F6;
+    }
+    body {
+        font-family: var(--font-yekan);
+        background-color: var(--color-body-bg);
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    ::selection {
+        background-color: var(--color-primary);
+        color: #fff;
+    }
+}
