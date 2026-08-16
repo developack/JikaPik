@@ -1,17 +1,17 @@
-import { Link } from 'react-router'
+import { SidePanel } from "@/features/sidebar/SidePanel"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 
-export function DashboardPage () {
+export function DashboardPage({ children }: { children: React.ReactNode }) {
     return (
-        <main className='flex min-h-screen'>
-            <aside className='bg-surface fixed h-screen w-64'>
-                <Link to="/" className='flex items-end gap-2'>
-                    <img className='w-[30px]' src="../public/logo.svg" alt="logo" />
-                    <span className='font-bold'>جیـکاپیـــک</span>
-                </Link>
-
-                <div></div>
-            </aside>
+        <main className=''>
+            <SidebarProvider>
+                <SidePanel />
+                <main>
+                    <SidebarTrigger />
+                    {children}
+                </main>
+            </SidebarProvider>
             <section></section>
         </main>
     )
