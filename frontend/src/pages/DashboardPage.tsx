@@ -1,18 +1,10 @@
-import { AppSidebar } from "@/features/sidebar/AppSidebar"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { PanelLayout } from "@/components/layout/PanelLayout"
 
 
-export function DashboardPage({ children }: { children: React.ReactNode }) {
+export function DashboardPage() {
     return (
-        <main className=''>
-            <SidebarProvider>
-                <AppSidebar />
-                <main>
-                    <SidebarTrigger />
-                    {children}
-                </main>
-            </SidebarProvider>
-            <section></section>
-        </main>
+        <PanelLayout>
+            <div>gegegeg</div>
+        </PanelLayout>
     )
 }

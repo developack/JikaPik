@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 
 
 
-export function AppSidebarFooter() {
+export function PanelSidebarFooter() {
     return (
         <SidebarFooter>
             <DropdownMenu>
@@ -25,7 +25,7 @@ export function AppSidebarFooter() {
                     </div>
                 </DropdownMenuTrigger>
 
-                <DropdownMenuContent side="left" align="end" className="w-56 ring-0 border border-border">
+                <DropdownMenuContent side="top" align="end" className="w-56 ring-0 border border-border">
                     <DropdownMenuGroup>
                         <DropdownMenuLabel className="font-normal">
                             <div className="flex items-center gap-2">
@@ -65,8 +65,8 @@ export function AppSidebarFooter() {
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem>
-                        <LogOut />
+                    <DropdownMenuItem variant="destructive">
+                        <LogOut className='stroke-destructive' />
                         خروج از حساب
                     </DropdownMenuItem>
                 </DropdownMenuContent>

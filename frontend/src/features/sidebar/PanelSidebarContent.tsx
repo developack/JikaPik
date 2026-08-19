@@ -4,7 +4,7 @@ import { ChartNoAxesCombined, CircleDot, ShoppingBag, Sparkles, ChevronLeft, Cal
 import { SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton } from '@/components/ui/sidebar'
 
 
-export function AppSidebarContent() {
+export function PanelSidebarContent() {
     return (
         <SidebarContent>
             <SidebarGroup>

@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { SidebarHeader } from '@/components/ui/sidebar'
 
 
-export function AppSidebarHeader() {
+export function PanelSidebarHeader() {
     return (
         <SidebarHeader>
             <Link to="/" className='flex items-end gap-2'>
