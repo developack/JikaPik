@@ -8,7 +8,7 @@ export function PanelLayout ({ children }: { children: React.ReactNode }) {
         <main id='content'>
             <SidebarProvider>
                 <PanelSidebar />
-                <main className="w-full bg-body-bg">
+                <main className="w-full">
                     <PanelHeader />
                     {children}
                 </main>

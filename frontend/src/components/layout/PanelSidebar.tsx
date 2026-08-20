@@ -6,7 +6,7 @@ import { PanelSidebarFooter } from '@/features/sidebar/PanelSidebarFooter'
 
 export function PanelSidebar () {
     return (
-        <Sidebar className='p-2' side='right'>
+        <Sidebar className='p-2 bg-surface' side='right'>
             <PanelSidebarHeader />
             <PanelSidebarContent />
             <PanelSidebarFooter />

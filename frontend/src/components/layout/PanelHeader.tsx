@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input"
+import { useTheme } from "@/contexts/ThemeContext"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { IconWrapper } from "@/components/ui/icon-wrapper"
 import { Contrast, Search, Bell, Mail, Globe, Moon, Monitor, Sun } from "lucide-react"
@@ -6,6 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 
 
 export function PanelHeader() {
+    const { theme, setTheme } = useTheme()
+
     return (
         <header className="flex items-center justify-between p-3 border-b border-border bg-surface">
             <div className="flex items-center">
@@ -24,16 +27,16 @@ export function PanelHeader() {
                         </IconWrapper>
                     </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="ring-0 border border-border">
-                        <DropdownMenuItem>
+                    <DropdownMenuContent className="ring-0 border border-border space-y-1">
+                        <DropdownMenuItem onClick={() => setTheme("light")} className={theme === "light" ? "bg-accent" : ""}>
                             <Sun />
                             روشن
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("dark")} className={theme === "dark" ? "bg-accent" : ""}>
                             <Moon />
                             تیره
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("system")} className={theme === "system" ? "bg-accent" : ""}>
                             <Monitor />
                             سیستم
                         </DropdownMenuItem>
