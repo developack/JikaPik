@@ -1,12 +1,15 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 import { Input } from "@/components/ui/input"
-import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { toast } from "@/components/ui/toast"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { Checkbox } from "@/components/ui/checkbox"
-import type { LoginInputs, LoginErrors, LoginFormProps } from "@/types/auth"
+import { saveTokens } from "@/features/auth/utils/token"
+import { login } from "@/features/auth/services/authApi"
+import { postApi } from "@/services/api"
+import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
+import type { LoginInputs, LoginErrors, LoginFormProps, LoginResponse } from "@/features/auth/types/auth.types"
 
 
 export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
@@ -43,29 +46,11 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
 
         try {
             setLoading(true)
-            const response = await fetch('http://localhost:8000/login/', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: inputs.email,
-                    password: inputs.password
-                })
-            })
-            const data = await response.json()
+            const response: LoginResponse = await postApi("/login/", {email: inputs.email, password: inputs.password})
 
-            if (!response.ok) {
-                toast.add({
-                    type: "error",
-                    description: data.general,
-                })
-                return
-            }
-
-            if (data.requires_2fa) {
+            if (response.requires_2fa) {
                 setAuthStep("otp")
-                setTwoFactorToken(data.token)
+                setTwoFactorToken(response.token)
                 toast.add({
                     type: "success",
                     description: "کد تائید برای شما ارسال گردید",
@@ -73,7 +58,7 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
                 return
             }
 
-            // Login user to system
+            saveTokens({access: response.access, refresh: response.refresh})
             toast.add({
                 type: "success",
                 description: "ورود شما با موفقیت انجام شد",

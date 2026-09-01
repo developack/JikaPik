@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { OTPForm } from "@/components/auth/OTPForm"
-import { LoginFrom } from "@/components/auth/LoginFrom"
-import type { AuthStep } from "@/types/auth"
+import { OTPForm } from "@/features/auth/components/OTPForm"
+import { LoginFrom } from "@/features/auth/components/LoginFrom"
+import type { AuthStep } from "@/features/auth/types/auth.types"
 
 
 export function LoginPage() {

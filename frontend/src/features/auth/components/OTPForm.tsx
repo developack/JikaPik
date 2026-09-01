@@ -1,12 +1,13 @@
+import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router"
-import { Field, FieldDescription } from "@/components/ui/field"
-import { Button } from "@/components/ui/button"
 import { REGEXP_ONLY_DIGITS } from "input-otp"
-import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
 import { Spinner } from "@/components/ui/spinner"
-import type { OTPFormProps, OTPErrors } from "@/types/auth"
+import { saveTokens } from "@/features/auth/utils/token"
+import { Field, FieldDescription } from "@/components/ui/field"
+import type { OTPFormProps, OTPErrors } from "@/features/auth/types/auth.types"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 
 
@@ -76,6 +77,7 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
                 return
             }
 
+            saveTokens({access: data.access, refresh: data.refresh})
             toast.add({
                 type: "success",
                 description: "ورود شما با موفقیت انجام شد",
