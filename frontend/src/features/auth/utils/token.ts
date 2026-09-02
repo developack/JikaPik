@@ -9,10 +9,7 @@ export const getTokens = (): AuthTokens | null => {
         return null
     }
 
-    return {
-        access,
-        refresh
-    }
+    return {access, refresh}
 }
 
 export const saveTokens = (tokens: AuthTokens): void => {

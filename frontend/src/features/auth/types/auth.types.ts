@@ -55,3 +55,7 @@ export type OTPErrorResponse = {
     general: string,
     invalid_auth?: boolean
 }
+
+export type RefreshAccessTokenResponse = {
+    access: string
+}

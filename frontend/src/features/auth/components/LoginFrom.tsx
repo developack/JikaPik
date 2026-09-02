@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { Checkbox } from "@/components/ui/checkbox"
 import { saveTokens } from "@/features/auth/utils/token"
-import { login } from "@/features/auth/services/authApi"
-import { postApi } from "@/services/api"
+import { postApi } from "@/services/api/api"
+import { ApiError } from "@/services/api/ApiError"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import type { LoginInputs, LoginErrors, LoginFormProps, LoginResponse } from "@/features/auth/types/auth.types"
 
@@ -66,9 +66,14 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
             navigate("/")
 
         } catch (error) {
+            let message = "خطا در برقراری ارتباط با سرور"
+
+            if (error instanceof ApiError) {
+                message = error.message
+            }
             toast.add({
                 type: "error",
-                description: "خطا در برقراری ارتباط با سرور",
+                description: message,
             })
         } finally {
             setLoading(false)

@@ -1,10 +1,11 @@
-import { getTokens, saveTokens } from "../utils/token"
-import type { LoginResponse, LoginErrorResponse } from "../types/auth.types"
+import { BASE_API_URL } from "@/config/api"
+import { getTokens, saveTokens, removeTokens } from "../utils/token"
+import type { LoginResponse, LoginErrorResponse, RefreshAccessTokenResponse } from "../types/auth.types"
 
 
 export const login = async (email: string, password: string): Promise<LoginResponse> => {
 
-    const response = await fetch('http://localhost:8000/login/', {
+    const response = await fetch(`${BASE_API_URL}/login/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -23,23 +24,42 @@ export const login = async (email: string, password: string): Promise<LoginRespo
     return data as LoginResponse
 }
 
-// export const refreshAccessToken = async (): Promise<string> => {
-//     const { refresh } = getTokens()
+const logout = (): void => {
+    removeTokens()
+}
 
-//     const response = await fetch("http://localhost:8000/token/refresh/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             refresh
-//         })
-//     })
-//     const data = await response.json()
+export const verify2FA = () => {
 
-//     if (response.ok) {
-//         saveTokens({access: data.access, refresh: refresh})
-//         return data.access
-//     }
+}
 
-// }
+export const resend2FA = () => {
+
+}
+
+export const refreshAccessToken = async (): Promise<void> => {
+    const tokens = getTokens()
+    if (!tokens) {
+        return
+    }
+
+    const { refresh } = tokens
+    try {
+        const response = await fetch(`${BASE_API_URL}/refresh/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({refresh})
+        })
+        const data: RefreshAccessTokenResponse = await response.json()
+        if (!response.ok) {
+            logout()
+            throw new Error("Refresh token is invalid or expired")
+        }
+        saveTokens({access: data.access, refresh: refresh})
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
