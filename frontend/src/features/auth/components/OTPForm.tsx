@@ -1,14 +1,16 @@
-import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { ArrowRight } from "lucide-react"
 import { Link, useNavigate } from "react-router"
 import { REGEXP_ONLY_DIGITS } from "input-otp"
+import { postApi } from "@/services/api/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
 import { Spinner } from "@/components/ui/spinner"
-import { saveTokens } from "@/features/auth/utils/token"
+import { ApiError } from "@/services/api/ApiError"
+import { useAuth } from "@/features/auth/hooks/useAuth"
 import { Field, FieldDescription } from "@/components/ui/field"
-import type { OTPFormProps, OTPErrors } from "@/features/auth/types/auth.types"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
+import type { OTPFormProps, OTPErrors, AuthTokens, OTPErrorResponse } from "@/features/auth/types/auth.types"
 
 
 export function OTPForm({ setAuthStep, token }: OTPFormProps) {
@@ -19,6 +21,7 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
     const [error, setError] = useState<OTPErrors>()
     const [countdown, setCountdown] = useState(otpResendSeconds)
     const [resendLoading, setResendLoading] = useState(false)
+    const { login } = useAuth()
 
     useEffect(() => {
         if (countdown === 0) return
@@ -51,33 +54,10 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
         try {
             setError({ otp: "" })
             setLoading(true)
-            const response = await fetch('http://localhost:8000/verify-2fa/', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    code: otp,
-                    token: token
-                })
-            })
-            const data = await response.json()
 
-            if (!response.ok) {
-                toast.add({
-                    type: "error",
-                    description: data.general,
-                })
+            const response: AuthTokens = await postApi("/verify-2fa/", { code: otp, token: token })
 
-                if (data.invalid_auth) {
-                    setAuthStep("login")
-                    return
-                }
-
-                return
-            }
-
-            saveTokens({access: data.access, refresh: data.refresh})
+            login(response)
             toast.add({
                 type: "success",
                 description: "ورود شما با موفقیت انجام شد",
@@ -85,9 +65,21 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
             navigate("/")
 
         } catch (error) {
+            let message = "خطا در برقراری ارتباط با سرور"
+
+            if (error instanceof ApiError) {
+                message = error.message
+
+                const data = error.data as OTPErrorResponse
+                if (data.invalid_auth) {
+                    setAuthStep("login")
+                    return
+                }
+            }
+
             toast.add({
                 type: "error",
-                description: "خطا در برقراری ارتباط با سرور",
+                description: message,
             })
 
         } finally {
@@ -99,25 +91,7 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
 
         try {
             setResendLoading(true)
-
-            const response = await fetch('http://localhost:8000/resend-2fa/', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    token
-                })
-            })
-            const data = await response.json()
-
-            if (!response.ok) {
-                toast.add({
-                    type: "error",
-                    description: data.general,
-                })
-                return
-            }
+            await postApi("/resend-2fa/", { token })
 
             setCountdown(otpResendSeconds)
             toast.add({
@@ -126,9 +100,15 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
             })
 
         } catch (error) {
+            let message = "خطا در برقراری ارتباط با سرور"
+
+            if (error instanceof ApiError) {
+                message = error.message
+            }
+
             toast.add({
                 type: "error",
-                description: "خطا در برقراری ارتباط با سرور",
+                description: message,
             })
 
         } finally {

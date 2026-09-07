@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toast'
 import ProtectedRoutes from '@/routes/ProtectedRoutes'
 
 
-function App() {
+export function App() {
   return (
     <>
       <Toaster />
@@ -22,4 +22,3 @@ function App() {
   )
 }
 
-export default App

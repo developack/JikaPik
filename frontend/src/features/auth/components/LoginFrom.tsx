@@ -5,9 +5,9 @@ import { toast } from "@/components/ui/toast"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { Checkbox } from "@/components/ui/checkbox"
-import { saveTokens } from "@/features/auth/utils/token"
 import { postApi } from "@/services/api/api"
 import { ApiError } from "@/services/api/ApiError"
+import { useAuth } from "@/features/auth/hooks/useAuth"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import type { LoginInputs, LoginErrors, LoginFormProps, LoginResponse } from "@/features/auth/types/auth.types"
 
@@ -17,6 +17,7 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
     const [inputs, setInputs] = useState<LoginInputs>({ email: "", password: "" })
     const [error, setError] = useState<LoginErrors>()
     const [loading, setLoading] = useState<boolean>(false)
+    const { login } = useAuth()
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = event.target
@@ -58,7 +59,7 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
                 return
             }
 
-            saveTokens({access: response.access, refresh: response.refresh})
+            login(response)
             toast.add({
                 type: "success",
                 description: "ورود شما با موفقیت انجام شد",

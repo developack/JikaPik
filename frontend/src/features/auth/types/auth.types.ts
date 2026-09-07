@@ -25,7 +25,7 @@ export type OTPFormProps = {
 }
 
 export type AuthTokens = {
-    access: string,
+    access: string
     refresh: string
 }
 
@@ -43,7 +43,7 @@ export type LoginResponse =
     | LoginSuccessResponse
 
 export type LoginErrorResponse = {
-    general: string,
+    detail: string,
 }
 
 export type OTPSuccessResponse = {
@@ -52,7 +52,7 @@ export type OTPSuccessResponse = {
 }
 
 export type OTPErrorResponse = {
-    general: string,
+    detail: string,
     invalid_auth?: boolean
 }
 

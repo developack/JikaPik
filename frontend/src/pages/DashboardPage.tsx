@@ -1,12 +1,9 @@
-import { PanelLayout } from "@/components/layout/PanelLayout"
 import { getApi } from "@/services/api/api"
-import { useState } from "react"
 import { ApiError } from "@/services/api/ApiError"
+import { PanelLayout } from "@/components/layout/PanelLayout"
 
 
 export function DashboardPage() {
-    const [ users, setUsers ] = useState({})
-
     const fetchUsers = async (): Promise<void> => {
 
         try {
@@ -19,7 +16,6 @@ export function DashboardPage() {
                 console.log(error.status)
             }
         }
-
     }
 
     return (

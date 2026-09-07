@@ -1,3 +1,4 @@
+import { useAuth } from '@/features/auth/hooks/useAuth'
 import { SidebarFooter } from '@/components/ui/sidebar'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Sparkles, CircleUser, LogOut, ChevronsUpDown, CreditCard, Bell, } from 'lucide-react'
@@ -6,6 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 
 
 export function PanelSidebarFooter() {
+    const { user, logout } = useAuth()
+
     return (
         <SidebarFooter>
             <DropdownMenu>
@@ -13,12 +16,12 @@ export function PanelSidebarFooter() {
                     <div className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-sidebar-accent">
                         <Avatar className="size-8">
                             <AvatarImage src="../public/img/avatar.png" />
-                            <AvatarFallback>ع</AvatarFallback>
+                            <AvatarFallback>{user?.username.charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
 
                         <div className="flex min-w-0 flex-1 flex-col text-right">
-                            <span className="truncate text-sm font-medium">علی احمدی</span>
-                            <span className="truncate text-xs text-muted-foreground">ali@example.com</span>
+                            <span className="truncate text-sm font-medium">{user?.username}</span>
+                            <span className="truncate text-xs text-muted-foreground">{user?.email}</span>
                         </div>
 
                         <ChevronsUpDown className='size-4' />
@@ -31,11 +34,11 @@ export function PanelSidebarFooter() {
                             <div className="flex items-center gap-2">
                                 <Avatar className="size-8">
                                     <AvatarImage src="../public/img/avatar.png" />
-                                    <AvatarFallback>ع</AvatarFallback>
+                                    <AvatarFallback>{user?.username.charAt(0).toUpperCase()}</AvatarFallback>
                                 </Avatar>
                                 <div className="flex min-w-0 flex-col">
-                                    <span className="truncate text-sm font-medium">علی احمدی</span>
-                                    <span className="truncate text-xs text-muted-foreground">ali@example.com</span>
+                                    <span className="truncate text-sm font-medium">{user?.username}</span>
+                                    <span className="truncate text-xs text-muted-foreground">{user?.email}</span>
                                 </div>
                             </div>
                         </DropdownMenuLabel>
@@ -65,7 +68,7 @@ export function PanelSidebarFooter() {
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem variant="destructive">
+                    <DropdownMenuItem variant="destructive" onClick={logout}>
                         <LogOut className='stroke-destructive' />
                         خروج از حساب
                     </DropdownMenuItem>
