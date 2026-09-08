@@ -7,8 +7,6 @@ export function App() {
   const navigation = useNavigation()
   const isNavigating = navigation.state === "loading"
 
-  console.log(navigation.state)
-
   return (
     <>
       <TopProgressBar loading={isNavigating} />

@@ -1,9 +1,9 @@
-import { getApi } from "@/services/api/api"
 import { ApiError } from "@/services/api/ApiError"
 import { useState, useEffect, createContext } from "react"
+import { getCurrentUser } from "@/features/auth/services/authApi"
 import { getTokens, saveTokens, removeTokens } from "@/features/auth/utils/token"
 import type { AuthTokens } from "@/features/auth/types/auth.types"
-import type { AuthContextType, UserProfileType } from "../types/context.types"
+import type { AuthContextType, UserProfileType } from "@/features/auth/types/context.types"
 
 
 export const AuthContext = createContext<AuthContextType | null>(null)
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const initializeAuth = async (): Promise<void> => {
             try {
                 setLoading(true)
-                setUser(await getApi("/auth/profile/"))
+                setUser(await getCurrentUser())
 
             } catch (error) {
                 if (error instanceof ApiError && error.status === 401) {
@@ -30,9 +30,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         initializeAuth()
     }, [])
 
-    const login = (tokens: AuthTokens):void => {
+    const login = async (tokens: AuthTokens): Promise<void> => {
         saveTokens(tokens)
         setIsAuthenticated(true)
+        setUser(await getCurrentUser())
     }
 
     const logout = (): void => {

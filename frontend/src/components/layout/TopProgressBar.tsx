@@ -6,8 +6,8 @@ type TopProgressBarProps = {
 }
 
 export function TopProgressBar({ loading }: TopProgressBarProps) {
-    const [progress, setProgress] = useState(0)
-    const [visible, setVisible] = useState(false)
+    const [ progress, setProgress ] = useState(0)
+    const [ visible, setVisible ] = useState(false)
 
     useEffect(() => {
         if (loading) {
