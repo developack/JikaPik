@@ -15,7 +15,7 @@ export function PanelSidebarContent() {
 
                         <SidebarMenuItem>
                             <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/">
+                                <Link className="flex items-end gap-2" to="/login">
                                     <ChartNoAxesCombined />
                                     <span className="leading-3.5">آمارها</span>
                                 </Link>
@@ -24,7 +24,7 @@ export function PanelSidebarContent() {
 
                         <SidebarMenuItem>
                             <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/">
+                                <Link className="flex items-end gap-2" to="/login">
                                     <ShoppingBag />
                                     <span className="leading-3.5">فروشگاه</span>
                                 </Link>
@@ -33,7 +33,7 @@ export function PanelSidebarContent() {
 
                         <SidebarMenuItem>
                             <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/">
+                                <Link className="flex items-end gap-2" to="/geegegegege">
                                     <CircleDot />
                                     <span className="leading-3.5">داشبورد مدیریت</span>
                                 </Link>

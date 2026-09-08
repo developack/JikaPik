@@ -39,7 +39,6 @@ export const apiRequest = async <T>(endpoint: string, options: RequestInit, isRe
         console.error("API call error:", error)
         throw error
     }
-
 }
 
 export const postApi = async <T, D>(endpoint: string, data: D): Promise<T> => {
