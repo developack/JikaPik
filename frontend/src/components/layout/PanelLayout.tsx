@@ -10,7 +10,9 @@ export function PanelLayout ({ children }: { children: React.ReactNode }) {
                 <PanelSidebar />
                 <main className="w-full">
                     <PanelHeader />
-                    {children}
+                    <div className="container py-15">
+                        {children}
+                    </div>
                 </main>
             </SidebarProvider>
             <section></section>

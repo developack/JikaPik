@@ -4,6 +4,7 @@ import { DashboardPage } from '@/pages/DashboardPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { createBrowserRouter } from "react-router"
 import { ProtectedRoutes} from '@/routes/ProtectedRoutes'
+import { ProjectsPage } from '@/pages/projects/ProjectsPage'
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         element: <DashboardPage />
+                    },
+
+                    {
+                        path: "/projects",
+                        element: <ProjectsPage />
                     }
                 ]
             },

@@ -10,62 +10,64 @@ export function PanelHeader() {
     const { theme, setTheme } = useTheme()
 
     return (
-        <header className="flex items-center justify-between p-3 border-b border-border bg-surface">
-            <div className="flex items-center">
-                <SidebarTrigger />
-                <div className="mx-5 h-5 w-px bg-border" />
-                <div className="relative">
-                    <Search className="size-4.5 absolute top-0 bottom-0 m-auto right-[10px]" />
-                    <Input className="p-4 pr-9" placeholder="جستجو..." />
+        <header className="p-3 border-b border-border bg-surface">
+            <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                    <SidebarTrigger />
+                    <div className="mx-5 h-5 w-px bg-border" />
+                    <div className="relative">
+                        <Search className="size-4.5 absolute top-0 bottom-0 m-auto right-[10px]" />
+                        <Input className="p-4 pr-9" placeholder="جستجو..." />
+                    </div>
                 </div>
-            </div>
-            <div className="flex items-center gap-2">
-                <DropdownMenu>
-                    <DropdownMenuTrigger>
-                        <IconWrapper>
-                            <Contrast className="size-4" />
-                        </IconWrapper>
-                    </DropdownMenuTrigger>
+                <div className="flex items-center gap-2">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <IconWrapper>
+                                <Contrast className="size-4" />
+                            </IconWrapper>
+                        </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="ring-0 border border-border space-y-1">
-                        <DropdownMenuItem onClick={() => setTheme("light")} className={theme === "light" ? "bg-accent" : ""}>
-                            <Sun />
-                            روشن
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("dark")} className={theme === "dark" ? "bg-accent" : ""}>
-                            <Moon />
-                            تیره
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("system")} className={theme === "system" ? "bg-accent" : ""}>
-                            <Monitor />
-                            سیستم
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                        <DropdownMenuContent className="ring-0 border border-border space-y-1">
+                            <DropdownMenuItem onClick={() => setTheme("light")} className={theme === "light" ? "bg-accent" : ""}>
+                                <Sun />
+                                روشن
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setTheme("dark")} className={theme === "dark" ? "bg-accent" : ""}>
+                                <Moon />
+                                تیره
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setTheme("system")} className={theme === "system" ? "bg-accent" : ""}>
+                                <Monitor />
+                                سیستم
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
 
-                <IconWrapper>
-                    <Bell className="size-4" />
-                </IconWrapper>
+                    <IconWrapper>
+                        <Bell className="size-4" />
+                    </IconWrapper>
 
-                <IconWrapper>
-                    <Mail className="size-4" />
-                </IconWrapper>
+                    <IconWrapper>
+                        <Mail className="size-4" />
+                    </IconWrapper>
 
-                <DropdownMenu>
-                    <DropdownMenuTrigger>
-                        <IconWrapper>
-                            <Globe className="size-4" />
-                        </IconWrapper>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="ring-0 border border-border">
-                        <DropdownMenuGroup>
-                            <DropdownMenuRadioGroup>
-                                <DropdownMenuRadioItem value="persian">فارسی</DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="english">English</DropdownMenuRadioItem>
-                            </DropdownMenuRadioGroup>
-                        </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <IconWrapper>
+                                <Globe className="size-4" />
+                            </IconWrapper>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="ring-0 border border-border">
+                            <DropdownMenuGroup>
+                                <DropdownMenuRadioGroup>
+                                    <DropdownMenuRadioItem value="persian">فارسی</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="english">English</DropdownMenuRadioItem>
+                                </DropdownMenuRadioGroup>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
         </header>
     )

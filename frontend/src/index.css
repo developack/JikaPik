@@ -131,7 +131,7 @@
     --popover-foreground: var(--color-text);
 
     --primary: var(--color-primary);
-    --primary-foreground: #18181B;
+    --primary-foreground: #FFFFFF;
 
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: var(--color-text);
@@ -233,5 +233,41 @@
     ::selection {
         background-color: var(--color-primary);
         color: #FFFFFF;
+    }
+}
+
+@utility container {
+    width: 100%;
+    margin-inline: auto;
+}
+
+@media (min-width: 360px) {
+    .container {
+        max-width: 100%;
+        min-width: 20rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 36rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 44rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 60rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 90rem;
     }
 }

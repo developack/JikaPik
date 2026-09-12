@@ -1,55 +1,42 @@
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { ChartNoAxesCombined, CircleDot, ShoppingBag, Sparkles, ChevronLeft, CalendarDays, MessagesSquare, Mail, NotepadText, Users, CircleUser, ShoppingCart, Ticket, Package, Settings } from 'lucide-react'
+import { FolderRoot, Sparkles, ChevronLeft, CalendarDays, MessagesSquare, Mail, NotepadText, Users, CircleUser, ShoppingCart, Ticket, Package, Settings, Key, ChartBarStacked, ChartColumnStacked, House } from 'lucide-react'
 import { SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton } from '@/components/ui/sidebar'
 
 
 export function PanelSidebarContent() {
+    const pathname = useLocation().pathname
+    
     return (
         <SidebarContent>
             <SidebarGroup>
-                <SidebarGroupLabel>داشبورد</SidebarGroupLabel>
-
+                <SidebarGroupLabel>مدیریت</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-
                         <SidebarMenuItem>
-                            <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/login">
-                                    <ChartNoAxesCombined />
-                                    <span className="leading-3.5">آمارها</span>
+                            <SidebarMenuButton isActive={pathname === '/'}>
+                                <Link className="flex items-end gap-2 w-full" to="/">
+                                    <House />
+                                    <span className="leading-3.5">داشبورد</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
-                            <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/login">
-                                    <ShoppingBag />
-                                    <span className="leading-3.5">فروشگاه</span>
+                            <SidebarMenuButton isActive={pathname === '/projects'}>
+                                <Link className="flex items-end gap-2 w-full" to="/projects">
+                                    <FolderRoot />
+                                    <span className="leading-3.5">پروژه‌ها</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
-                        <SidebarMenuItem>
-                            <SidebarMenuButton>
-                                <Link className="flex items-end gap-2" to="/geegegegege">
-                                    <CircleDot />
-                                    <span className="leading-3.5">داشبورد مدیریت</span>
-                                </Link>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-
                     </SidebarMenu>
                 </SidebarGroupContent>
             </SidebarGroup>
 
             <SidebarGroup>
                 <SidebarGroupLabel>برنامه‌ها</SidebarGroupLabel>
-
                 <SidebarGroupContent>
                     <SidebarMenu>
-
                         <SidebarMenuItem>
                             <Collapsible defaultOpen={false} className="group/collapsible">
                                 <CollapsibleTrigger className='w-full'>
@@ -81,7 +68,6 @@ export function PanelSidebarContent() {
                                 </CollapsibleContent>
                             </Collapsible>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -90,7 +76,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -99,7 +84,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -108,7 +92,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -117,7 +100,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -126,7 +108,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -135,7 +116,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -144,7 +124,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -153,7 +132,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -162,7 +140,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <Link className="flex items-end gap-2" to="/">
@@ -171,7 +148,6 @@ export function PanelSidebarContent() {
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
                     </SidebarMenu>
                 </SidebarGroupContent>
             </SidebarGroup>
