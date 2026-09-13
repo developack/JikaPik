@@ -6,3 +6,17 @@ export type Project = {
     created: string,
     updated?: string,
 }
+
+export type NewProjectErrors = {
+    name?: string
+}
+
+export type NewProjectResponse = {
+    name?: string
+    activity_status?: boolean,
+}
+
+export type NewProjectDialogProps = {
+    setNewProject: React.Dispatch<React.SetStateAction<NewProjectResponse>>,
+    setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
+}

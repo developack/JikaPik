@@ -6,7 +6,7 @@ export const ProjectsTableSkeleton = () => {
     return (
         <div className="rounded-md border">
             <Table>
-                <TableHeader className="bg-[#f7f7f7]">
+                <TableHeader className="bg-table-head">
                     <TableRow>
                         <TableHead className="text-right font-bold">عنوان</TableHead>
                         <TableHead className="text-right font-bold">تاریخ ایجاد</TableHead>

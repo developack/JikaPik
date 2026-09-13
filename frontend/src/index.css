@@ -22,6 +22,7 @@
     /* Background */
     --color-body-bg: #F8FAFC;
     --color-surface: #FFFFFF;
+    --color-table-head: #f7f7f7;
 
     /* Border */
     --color-border: #E4E4E7;
@@ -47,6 +48,7 @@
         /* Background */
         --color-body-bg: #09090B;
         --color-surface: #18181B;
+        --color-table-head: #27272A;
 
         /* Border */
         --color-border: #27272A;

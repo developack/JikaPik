@@ -10,7 +10,7 @@ export function PanelHeader() {
     const { theme, setTheme } = useTheme()
 
     return (
-        <header className="p-3 border-b border-border bg-surface">
+        <header className="p-3 border-b border-border bg-surface sticky top-0 z-10">
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                     <SidebarTrigger />
