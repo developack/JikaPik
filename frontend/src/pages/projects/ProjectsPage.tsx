@@ -73,7 +73,7 @@ export const ProjectsPage = () => {
                         </div>
                     </main>
                 </section>
-                <NewProjectDialog onProjectCreated={handleProjectCreated} setDialogOpen={setDialogOpen} />
+                <NewProjectDialog onProjectCreated={handleProjectCreated} onDialogOpen={setDialogOpen} />
             </Dialog>
         </PanelLayout>
     )

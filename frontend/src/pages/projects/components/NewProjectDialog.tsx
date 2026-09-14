@@ -1,24 +1,21 @@
 import { useState } from "react"
-import { postApi } from "@/services/api/api"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Field, FieldDescription, FieldGroup } from "@/components/ui/field"
+import { toast } from "@/components/ui/toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { ApiError } from "@/services/api/ApiError"
-import { toast } from "@/components/ui/toast"
+import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
-import type { NewProjectErrors, NewProjectDialogProps, Project } from "@/types/project.types"
+import { ApiError } from "@/services/api/ApiError"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Field, FieldDescription, FieldGroup } from "@/components/ui/field"
 import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import type { NewProjectErrors, NewProjectDialogProps, Project } from "@/types/project.types"
+import { postApi } from "@/services/api/api"
 
 
-export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProjectDialogProps) => {
+export const NewProjectDialog = ({ onProjectCreated, onDialogOpen }: NewProjectDialogProps) => {
     const [ error, setError ] = useState<NewProjectErrors>()
     const [ loading, setLoading ] = useState(false)
-    const [ formData, setFormData ] = useState({
-        name: "",
-        activity_status: true
-    })
+    const [ formData, setFormData ] = useState({name: "", activity_status: true})
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = event.target
@@ -27,12 +24,11 @@ export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProject
     }
 
     const handleActivityStatusChange = (checked: boolean) => {
-        setFormData((prev) => ({ ...prev, "activity_status": checked }))
+        setFormData((prev) => ({ ...prev, activity_status: checked }))
     }
 
     const formValidation = (): NewProjectErrors => {
         const errors: NewProjectErrors = {}
-
         if (!formData.name.trim()) {
             errors.name = "وارد کردن نام پروژه الزامی است"
         }
@@ -48,11 +44,11 @@ export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProject
             return
         }
 
+        setLoading(true)
         try {
-            setLoading(true)
             const project: Project = await postApi("/projects/", {...formData, created: new Date()})
             onProjectCreated(project)
-            setDialogOpen(false)
+            onDialogOpen(false)
             setFormData({name: "", activity_status: true})
             toast.add({
                 type: "success",
@@ -69,7 +65,7 @@ export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProject
                 type: "error",
                 description: message,
             })
-            setDialogOpen(false)
+            onDialogOpen(false)
 
         } finally {
             setLoading(false)
@@ -90,7 +86,7 @@ export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProject
                     </Field>
                     <div className="flex items-center gap-2">
                         <Label htmlFor="activity_status">فعال / غیرفعال</Label>
-                        <Checkbox id="activity_status" name="activity_status" onCheckedChange={handleActivityStatusChange} defaultChecked />
+                        <Checkbox id="activity_status" name="activity_status" onCheckedChange={handleActivityStatusChange} checked={formData.activity_status} />
                     </div>
                 </FieldGroup>
                 <DialogFooter>
