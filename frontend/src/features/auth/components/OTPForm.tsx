@@ -149,14 +149,13 @@ export function OTPForm({ setAuthStep, token }: OTPFormProps) {
                 </Field>
                 {resendLoading ? <p className="text-xs text-center text-text-secondary my-5">در حال ارسال مجدد کد تایید ...</p> :
                     countdown === 0 ? <Button variant="link" onClick={handleResend2FA} className="text-xs text-text cursor-pointer my-[10px]">ارسال مجدد کد تایید</Button> :
-                    <p className="text-xs text-center text-text-secondary my-5">ارسال مجدد کد تا {countdown} ثانیه دیگر</p>
+                        <p className="text-xs text-center text-text-secondary my-5">ارسال مجدد کد تا {countdown} ثانیه دیگر</p>
                 }
 
-                {!loading ? <Button type="submit" className='text-white p-4'>تایید و ادامه</Button> :
-                    <Button disabled className='text-white p-4'>
-                        <Spinner data-icon="inline-start" />
-                        در حال ورود به سامانه ...
-                    </Button>}
+                <Button type="submit" className="text-white p-4" disabled={loading}>
+                    {loading && <Spinner data-icon="inline-start" />}
+                    {loading ? 'در حال ورود به سامانه ...' : 'تایید و ادامه'}
+                </Button>
             </div>
         </form>
     )

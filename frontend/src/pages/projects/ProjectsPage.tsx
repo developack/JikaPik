@@ -1,35 +1,35 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router"
-import { FolderClosed, Pencil, PlusIcon, EllipsisVertical } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { toast } from "@/components/ui/toast"
-import { PanelLayout } from "@/components/layout/PanelLayout"
-import { ProjectsTableSkeleton } from "@/pages/projects/components/ProjectsTableSkeleton"
-import { Table, TableRow, TableHead, TableCell, TableHeader, TableBody } from "@/components/ui/table"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import { PlusIcon } from "lucide-react"
+import { PanelLayout } from "@/components/layout/PanelLayout"
+import { ProjectTable } from "@/pages/projects/components/ProjectsTable"
+import { NewProjectDialog } from "@/pages/projects/components/NewProjectDialog"
+import { ProjectsTableSkeleton } from "@/pages/projects/components/ProjectsTableSkeleton"
 import type { Project } from "@/types/project.types"
 import { getApi } from "@/services/api/api"
-import { formatDate } from "@/utils/date"
-import { NewProjectDialog } from "@/pages/projects/components/NewProjectDialog"
 
 
 export const ProjectsPage = () => {
     const [ projects, setProjects ] = useState<Project[]>([])
     const [ loading, setLoading ] = useState(false)
-    const [ createdProjects, setCreatedProjects ] = useState()
     const [ dialogOpen, setDialogOpen ] = useState(false)
+
+    const handleProjectCreated = (project: Project) => {
+        setProjects(prev => [...prev, project])
+    }
 
     useEffect(() => {
         const fetchProjects = async (): Promise<void> => {
 
+            setLoading(true)
             try {
-                setLoading(true)
-                const response = await getApi<Project[]>("/projects/")
-                setProjects(response)
+                const project = await getApi<Project[]>("/projects/")
+                setProjects(project)
 
             } catch (error) {
-                console.log(error)
+
                 toast.add({
                     type: "error",
                     description: "خطا در برقراری ارتباط با سرور",
@@ -41,7 +41,7 @@ export const ProjectsPage = () => {
         }
 
         fetchProjects()
-    }, [createdProjects])
+    }, [])
 
     return (
         <PanelLayout>
@@ -60,46 +60,7 @@ export const ProjectsPage = () => {
                         <div className="bg-surface overflow-hidden rounded-xl border">
                             <div></div>
                             <div>
-                                {loading ? <ProjectsTableSkeleton /> : <Table className="overflow-hidden">
-                                    <TableHeader className="bg-table-head">
-                                        <TableRow>
-                                            <TableHead className="text-right font-bold">نام</TableHead>
-                                            <TableHead className="text-right font-bold">تاریخ ایجاد</TableHead>
-                                            <TableHead className="text-right font-bold">وضعیت</TableHead>
-                                            <TableHead className="text-right font-bold">عملیات</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {projects.map((project) => (
-                                            <TableRow key={project.id}>
-                                                <TableCell>
-                                                    <Button variant="link">
-                                                        <Link to={`/projects/${project.id}`} className="flex items-center gap-2 text-text">
-                                                            <FolderClosed className="size-4" />
-                                                            {project.name}
-                                                        </Link>
-                                                    </Button>
-                                                </TableCell>
-                                                <TableCell>{formatDate(project.created)}</TableCell>
-                                                <TableCell>
-                                                    <Badge className="select-none" variant={project.activity_status ? 'secondary' : 'destructive'}>
-                                                        {project.activity_status ? 'فعال' : 'غیرفعال'}
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="flex items-center gap-2">
-                                                    <Button size="icon-sm" variant="outline">
-                                                        <Link to="/project">
-                                                            <Pencil />
-                                                        </Link>
-                                                    </Button>
-                                                    <Button size="icon-sm" variant="ghost" className="absolute left-[12px]">
-                                                        <EllipsisVertical />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>}
+                                {loading ? <ProjectsTableSkeleton /> : <ProjectTable projects={projects} />}
                                 <div className="flex items-center justify-between border-t p-3">
                                     <div className="flex items-center gap-2">
                                         <Button variant="outline" disabled>قبلی</Button>
@@ -112,7 +73,7 @@ export const ProjectsPage = () => {
                         </div>
                     </main>
                 </section>
-                <NewProjectDialog setNewProject={setCreatedProjects} setDialogOpen={setDialogOpen} />
+                <NewProjectDialog onProjectCreated={handleProjectCreated} setDialogOpen={setDialogOpen} />
             </Dialog>
         </PanelLayout>
     )

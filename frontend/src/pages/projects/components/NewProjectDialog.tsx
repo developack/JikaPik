@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { postApi } from "@/services/api/api"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -8,11 +8,11 @@ import { Input } from "@/components/ui/input"
 import { ApiError } from "@/services/api/ApiError"
 import { toast } from "@/components/ui/toast"
 import { Spinner } from "@/components/ui/spinner"
-import type { NewProjectErrors, NewProjectDialogProps, NewProjectResponse } from "@/types/project.types"
+import type { NewProjectErrors, NewProjectDialogProps, Project } from "@/types/project.types"
 import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 
-export const NewProjectDialog = ({ setNewProject, setDialogOpen }: NewProjectDialogProps) => {
+export const NewProjectDialog = ({ onProjectCreated, setDialogOpen }: NewProjectDialogProps) => {
     const [ error, setError ] = useState<NewProjectErrors>()
     const [ loading, setLoading ] = useState(false)
     const [ formData, setFormData ] = useState({
@@ -31,7 +31,6 @@ export const NewProjectDialog = ({ setNewProject, setDialogOpen }: NewProjectDia
     }
 
     const formValidation = (): NewProjectErrors => {
-
         const errors: NewProjectErrors = {}
 
         if (!formData.name.trim()) {
@@ -51,8 +50,8 @@ export const NewProjectDialog = ({ setNewProject, setDialogOpen }: NewProjectDia
 
         try {
             setLoading(true)
-            const response: NewProjectResponse = await postApi("/projects/", {...formData, created: new Date()})
-            setNewProject(response)
+            const project: Project = await postApi("/projects/", {...formData, created: new Date()})
+            onProjectCreated(project)
             setDialogOpen(false)
             setFormData({name: "", activity_status: true})
             toast.add({

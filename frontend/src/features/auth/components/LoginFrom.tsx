@@ -110,11 +110,10 @@ export function LoginFrom({ setAuthStep, setTwoFactorToken }: LoginFormProps) {
                     <Checkbox id="remember-me" />
                     <FieldLabel htmlFor="remember-me">مرا به خاطر بسپار</FieldLabel>
                 </div>
-                {!loading ? <Button type="submit" className='text-white p-4'>ورود</Button> :
-                    <Button disabled className='text-white p-4'>
-                        <Spinner data-icon="inline-start" />
-                        در حال بررسی ...
-                    </Button>}
+                <Button type="submit" className="text-white p-4" disabled={loading}>
+                    {loading && <Spinner data-icon="inline-start" />}
+                    {loading ? 'در حال بررسی ...' : 'ورود'}
+                </Button>
             </div>
 
         </form>
