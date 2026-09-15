@@ -8,10 +8,10 @@ export const ProjectsTableSkeleton = () => {
             <Table>
                 <TableHeader className="bg-table-head">
                     <TableRow>
-                        <TableHead className="text-right font-bold">عنوان</TableHead>
-                        <TableHead className="text-right font-bold">تاریخ ایجاد</TableHead>
-                        <TableHead className="text-right font-bold">وضعیت</TableHead>
-                        <TableHead className="text-right font-bold">عملیات</TableHead>
+                        <TableHead className="text-right font-bold w-[40%]">عنوان</TableHead>
+                        <TableHead className="text-right font-bold w-[25%]">تاریخ ایجاد</TableHead>
+                        <TableHead className="text-right font-bold w-[20%]">وضعیت</TableHead>
+                        <TableHead className="text-right font-bold w-[15%]">عملیات</TableHead>
                     </TableRow>
                 </TableHeader>
 
@@ -32,7 +32,6 @@ export const ProjectsTableSkeleton = () => {
 
                             <TableCell>
                                 <div className="flex gap-2">
-                                    <Skeleton className="h-8 w-8 rounded-md" />
                                     <Skeleton className="h-8 w-8 rounded-md" />
                                 </div>
                             </TableCell>

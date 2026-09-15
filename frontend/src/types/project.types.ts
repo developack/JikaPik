@@ -17,3 +17,7 @@ export type NewProjectDialogProps = {
 export type ProjectsTableProps = {
     projects: Project[]
 }
+
+export type ProjectsTableErrorProps = {
+    onRetry: () => void
+}
