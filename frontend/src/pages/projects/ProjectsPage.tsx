@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
-import { PlusIcon } from "lucide-react"
+import { FolderCode, PlusIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { PanelLayout } from "@/components/layout/PanelLayout"
 import { ProjectTable } from "@/pages/projects/components/ProjectsTable"
-import { EmptyProjects } from "@/pages/projects/components/EmptyProjects"
+import { DataTableEmpty } from "@/components/data-table/DataTableEmpty"
+import { DataTableError } from "@/components/data-table/DataTableError"
 import { NewProjectDialog } from "@/pages/projects/components/NewProjectDialog"
-import { ProjectTableError } from "@/pages/projects/components/ProjectsTableError"
 import { ProjectsTableSkeleton } from "@/pages/projects/components/ProjectsTableSkeleton"
 import type { Project } from "@/types/project.types"
 import { getApi } from "@/services/api/api"
@@ -60,11 +60,11 @@ export const ProjectsPage = () => {
         }
 
         if (error) {
-            return <ProjectTableError onRetry={fetchProjects} />
+            return <DataTableError onRetry={fetchProjects} />
         }
 
         if (projects.length === 0) {
-            return <EmptyProjects />
+            return <DataTableEmpty title="هنوز پروژه‌ای ایجاد نکرده‌اید" description="برای شروع، اولین پروژه خود را ایجاد کنید." icon={FolderCode} />
         }
 
         return <ProjectTable projects={projects} />

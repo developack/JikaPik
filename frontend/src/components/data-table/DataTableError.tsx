@@ -1,18 +1,18 @@
 import { TriangleAlertIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
-import type { ProjectsTableErrorProps } from "@/types/project.types"
+import type { DataTableErrorProps } from "@/types/component.types"
 
 
-export const ProjectTableError = ({ onRetry }: ProjectsTableErrorProps) => {
+export const DataTableError = ({ onRetry }: DataTableErrorProps) => {
     return (
         <Empty>
             <EmptyHeader>
                 <EmptyMedia variant="icon" className="size-15 border">
                     <TriangleAlertIcon className="size-10" />
                 </EmptyMedia>
-                <EmptyTitle>دریافت پروژه‌ها ناموفق بود</EmptyTitle>
-                <EmptyDescription>در دریافت اطلاعات مشکلی پیش آمد. لطفاً دوباره تلاش کنید.</EmptyDescription>
+                <EmptyTitle>خطا در دریافت اطلاعات</EmptyTitle>
+                <EmptyDescription>دریافت اطلاعات با مشکل مواجه شد. لطفاً دوباره تلاش کنید.</EmptyDescription>
             </EmptyHeader>
 
             <EmptyContent>
@@ -20,4 +20,4 @@ export const ProjectTableError = ({ onRetry }: ProjectsTableErrorProps) => {
             </EmptyContent>
         </Empty>
     )
-}   
+}

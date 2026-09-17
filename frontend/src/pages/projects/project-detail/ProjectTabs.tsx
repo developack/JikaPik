@@ -1,7 +1,7 @@
 import { Building, LayoutDashboard, Tag } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { KeywordsTabContent } from "@/pages/projects/project-detail/keywords/KeywordsTabContent"
-import { CategoriesTabContent } from "@/pages/projects/project-detail/keywords/CategoriesTabContent"
+import { CategoriesTabContent } from "@/pages/projects/project-detail/categories/CategoriesTabContent"
 
 
 export const ProjectTabs = () => {

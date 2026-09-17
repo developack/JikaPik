@@ -18,10 +18,6 @@ export type ProjectsTableProps = {
     projects: Project[]
 }
 
-export type ProjectsTableErrorProps = {
-    onRetry: () => void
-}
-
 export type ProjectHeaderProps = {
     project: Project | null
 }
