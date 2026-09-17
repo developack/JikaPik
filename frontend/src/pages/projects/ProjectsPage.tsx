@@ -27,6 +27,7 @@ export const ProjectsPage = () => {
     const fetchProjects = async (): Promise<void> => {
 
         setLoading(true)
+        setError(null)
         try {
             const projects = await getApi<Project[]>("/projects/")
             setProjects(projects)
@@ -49,7 +50,7 @@ export const ProjectsPage = () => {
     }
 
     useEffect(() => {
-        
+
         fetchProjects()
     }, [])
 
@@ -82,7 +83,7 @@ export const ProjectsPage = () => {
                             </Button>
                         </DialogTrigger>
                     </header>
-                    <main className="mt-10">
+                    <main className="mt-5">
                         {renderProjectsContent()}
                     </main>
                 </section>

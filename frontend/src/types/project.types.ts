@@ -21,3 +21,7 @@ export type ProjectsTableProps = {
 export type ProjectsTableErrorProps = {
     onRetry: () => void
 }
+
+export type ProjectHeaderProps = {
+    project: Project | null
+}

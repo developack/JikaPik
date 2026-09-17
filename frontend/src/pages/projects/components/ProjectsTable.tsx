@@ -10,7 +10,7 @@ import { formatDate } from "@/utils/date"
 export const ProjectTable = ({ projects }: ProjectsTableProps) => {
 
     return (
-        <div className="bg-surface overflow-hidden rounded-xl border">
+        <div className="bg-surface overflow-hidden rounded-lg border">
             <Table className="overflow-hidden">
                 <TableHeader className="bg-table-head">
                     <TableRow>
@@ -33,7 +33,7 @@ export const ProjectTable = ({ projects }: ProjectsTableProps) => {
                             </TableCell>
                             <TableCell>{formatDate(project.created)}</TableCell>
                             <TableCell>
-                                <Badge className="select-none" variant={project.activity_status ? 'secondary' : 'destructive'}>
+                                <Badge className="select-none" variant={project.activity_status ? 'active' : 'destructive'}>
                                     {project.activity_status ? 'فعال' : 'غیرفعال'}
                                 </Badge>
                             </TableCell>

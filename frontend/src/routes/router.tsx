@@ -5,6 +5,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 import { createBrowserRouter } from "react-router"
 import { ProtectedRoutes} from '@/routes/ProtectedRoutes'
 import { ProjectsPage } from '@/pages/projects/ProjectsPage'
+import { ProjectDetailPage } from '@/pages/projects/ProjectDetailPage' 
 
 
 export const router = createBrowserRouter([
@@ -26,7 +27,12 @@ export const router = createBrowserRouter([
 
                     {
                         path: "/projects",
-                        element: <ProjectsPage />
+                        element: <ProjectsPage />,
+                    },
+
+                    {
+                        path: "/projects/:projectId",
+                        element: <ProjectDetailPage />
                     }
                 ]
             },

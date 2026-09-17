@@ -4,7 +4,7 @@ import { Table, TableRow, TableHead, TableCell, TableHeader, TableBody } from "@
 
 export const ProjectsTableSkeleton = () => {
     return (
-        <div className="rounded-md border">
+        <div className="rounded-md border bg-surface">
             <Table>
                 <TableHeader className="bg-table-head">
                     <TableRow>
