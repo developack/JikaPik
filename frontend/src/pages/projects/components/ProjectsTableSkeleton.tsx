@@ -9,9 +9,9 @@ export const ProjectsTableSkeleton = () => {
                 <TableHeader className="bg-table-head">
                     <TableRow>
                         <TableHead className="text-right font-bold w-[40%]">عنوان</TableHead>
-                        <TableHead className="text-right font-bold w-[25%]">تاریخ ایجاد</TableHead>
+                        <TableHead className="text-right font-bold w-[30%]">تاریخ ایجاد</TableHead>
                         <TableHead className="text-right font-bold w-[20%]">وضعیت</TableHead>
-                        <TableHead className="text-right font-bold w-[15%]">عملیات</TableHead>
+                        <TableHead className="text-right font-bold w-[10%]">عملیات</TableHead>
                     </TableRow>
                 </TableHeader>
 

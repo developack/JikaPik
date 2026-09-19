@@ -35,9 +35,8 @@ export const ProjectHeader = ({ project }: ProjectHeaderProps) => {
                                     {project?.activity_status ? 'فعال' : 'غیرفعال'}
                                 </Badge>
                             </h1>
-                            <p className="text-text-secondary text-sm">یک سایت فروشگاهی کتاب و توزیع کننده کتاب های آموزشی و کمک آموزشی برای تمامی مقاطع و سننین</p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-text-secondary mt-4">
+                        <div className="flex items-center gap-1 text-sm text-text-secondary mt-2">
                             <Calendar className="size-4" />
                             <p>تاریخ ایجاد: <span>{formatDate(project?.created)}</span></p>
                         </div>

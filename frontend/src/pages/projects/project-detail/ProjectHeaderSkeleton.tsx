@@ -30,9 +30,8 @@ export const ProjectHeaderSkeleton = () => {
                                 <Skeleton className="w-50 h-[28px]" />
                                 <Skeleton className="w-10 h-5 rounded-full" />
                             </h1>
-                            <Skeleton className="w-[500px] h-5" />
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-text-secondary mt-4">
+                        <div className="flex items-center gap-1 text-sm text-text-secondary mt-2">
                             <Calendar className="size-4" />
                             <p className="flex items-center gap-2">تاریخ ایجاد: <Skeleton className="w-18 h-5" /></p>
                         </div>

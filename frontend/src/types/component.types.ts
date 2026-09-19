@@ -10,3 +10,9 @@ export type DataTableEmptyProps = {
 export type DataTableErrorProps = {
     onRetry: () => void
 }
+
+export type TagInputProps = {
+    value: string[],
+    onChange: (tags: string[]) => void,
+    placeholder: string
+}

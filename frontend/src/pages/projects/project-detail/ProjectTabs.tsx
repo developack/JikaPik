@@ -18,10 +18,10 @@ export const ProjectTabs = () => {
                             <Tag />
                             کلیدواژه‌ها
                         </TabsTrigger>
-                        <TabsTrigger value="categories" className="px-5 py-3 text-sm">
+                        {/* <TabsTrigger value="categories" className="px-5 py-3 text-sm">
                             <LayoutDashboard />
                             دسته‌بندی‌ها
-                        </TabsTrigger>
+                        </TabsTrigger> */}
                     </TabsList>
                 </div>
                 <div className="mt-5">

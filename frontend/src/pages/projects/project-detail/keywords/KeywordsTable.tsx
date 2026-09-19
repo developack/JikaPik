@@ -1,49 +1,48 @@
 import { Link } from "react-router"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { FolderClosed, Pencil, EllipsisVertical } from "lucide-react"
+import { Pencil, EllipsisVertical, Tag, Eye } from "lucide-react"
 import { Table, TableRow, TableHead, TableCell, TableHeader, TableBody } from "@/components/ui/table"
-import type { ProjectsTableProps } from "@/types/project.types"
+import type { KeywordsTableProps } from "@/types/keyword.types"
 import { formatDate } from "@/utils/date"
 
 
-export const ProjectTable = ({ projects }: ProjectsTableProps) => {
-
+export const KeywordsTable = ({ keywords }: KeywordsTableProps) => {
     return (
         <div className="bg-surface overflow-hidden rounded-lg border">
             <Table className="overflow-hidden">
                 <TableHeader className="bg-table-head">
                     <TableRow>
-                        <TableHead className="text-right font-bold w-[40%]">عنوان</TableHead>
-                        <TableHead className="text-right font-bold w-[30%]">تاریخ ایجاد</TableHead>
-                        <TableHead className="text-right font-bold w-[20%]">وضعیت</TableHead>
+                        <TableHead className="text-right font-bold w-[30%]">عنوان</TableHead>
+                        <TableHead className="text-right font-bold w-[15%]">پروژه</TableHead>
+                        <TableHead className="text-right font-bold w-[15%]">نوع کلیدواژه</TableHead>
+                        <TableHead className="text-right font-bold w-[15%]">زبان</TableHead>
+                        <TableHead className="text-right font-bold w-[15%]">تاریخ ایجاد</TableHead>
                         <TableHead className="text-right font-bold w-[10%]">عملیات</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {projects.map((project) => (
-                        <TableRow key={project.id}>
+                    {keywords.map((keyword) => (
+                        <TableRow key={keyword.id}>
                             <TableCell>
-                                <Button variant="link">
-                                    <Link to={`/projects/${project.id}`} className="flex items-center gap-2 text-text">
-                                        <FolderClosed className="size-4" />
-                                        {project.name}
-                                    </Link>
-                                </Button>
+                                <h2 className="flex items-center gap-2 font-medium">
+                                    <Tag className="size-4" />
+                                    {keyword.name}
+                                </h2>
                             </TableCell>
-                            <TableCell>{formatDate(project.created)}</TableCell>
-                            <TableCell>
-                                <Badge className="select-none" variant={project.activity_status ? 'active' : 'destructive'}>
-                                    {project.activity_status ? 'فعال' : 'غیرفعال'}
-                                </Badge>
-                            </TableCell>
+                            <TableCell>{keyword.project}</TableCell>
+                            <TableCell>{keyword.keyword_type}</TableCell>
+                            <TableCell>{keyword.language}</TableCell>
+                            <TableCell>{formatDate(keyword.created)}</TableCell>
                             <TableCell className="flex items-center gap-2">
                                 <Button size="icon-sm" variant="outline">
+                                    <Eye />
+                                </Button>
+                                <Button size="icon-sm" variant="outline" disabled>
                                     <Link to="/project">
                                         <Pencil />
                                     </Link>
                                 </Button>
-                                <Button size="icon-sm" variant="ghost">
+                                <Button size="icon-sm" variant="ghost" disabled>
                                     <EllipsisVertical />
                                 </Button>
                             </TableCell>
