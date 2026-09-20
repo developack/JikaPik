@@ -4,7 +4,9 @@ export type Keyword = {
     language: string,
     keyword_type: string,
     name: string,
-    words: any,
+    words: {
+        list?: string[]
+    },
     created: string,
 }
 
@@ -18,8 +20,15 @@ export type NewProjectErrors = {
 }
 
 export type NewKeywordDialogProps = {
+    open: boolean,
+    onOpenChange: React.Dispatch<React.SetStateAction<boolean>>
     onKeywordCreated: (keyword: Keyword) => void,
-    onDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type KeywordDetailDialogProps = {
+    open: boolean,
+    onOpenChange: React.Dispatch<React.SetStateAction<boolean>>,
+    keyword: Keyword | null
 }
 
 export type KeywordsTableProps = {

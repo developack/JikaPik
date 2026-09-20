@@ -1,12 +1,22 @@
+import { useState } from "react"
 import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
 import { Pencil, EllipsisVertical, Tag, Eye } from "lucide-react"
 import { Table, TableRow, TableHead, TableCell, TableHeader, TableBody } from "@/components/ui/table"
-import type { KeywordsTableProps } from "@/types/keyword.types"
+import { KeywordDetailDialog } from "@/pages/projects/project-detail/keywords/KeywordDetailDialog"
+import type { Keyword, KeywordsTableProps } from "@/types/keyword.types"
 import { formatDate } from "@/utils/date"
 
 
 export const KeywordsTable = ({ keywords }: KeywordsTableProps) => {
+    const [dialogOpen, setDialogOpen] = useState(false)
+    const [selectedKeyword, setSelectedKeyword] = useState<Keyword | null>(null)
+
+    const handleViewDetails = (keyword: Keyword): void => {
+        setSelectedKeyword(keyword)
+        setDialogOpen(true)
+    }
+
     return (
         <div className="bg-surface overflow-hidden rounded-lg border">
             <Table className="overflow-hidden">
@@ -34,7 +44,7 @@ export const KeywordsTable = ({ keywords }: KeywordsTableProps) => {
                             <TableCell>{keyword.language}</TableCell>
                             <TableCell>{formatDate(keyword.created)}</TableCell>
                             <TableCell className="flex items-center gap-2">
-                                <Button size="icon-sm" variant="outline">
+                                <Button onClick={() => handleViewDetails(keyword)} size="icon-sm" variant="outline">
                                     <Eye />
                                 </Button>
                                 <Button size="icon-sm" variant="outline" disabled>
@@ -57,6 +67,7 @@ export const KeywordsTable = ({ keywords }: KeywordsTableProps) => {
                 </div>
                 <span className="text-sm text-text-secondary">نمایش 1 تا 6 از 6 مورد</span>
             </div>
+            <KeywordDetailDialog open={dialogOpen} onOpenChange={setDialogOpen} keyword={selectedKeyword} />
         </div>
     )
 }

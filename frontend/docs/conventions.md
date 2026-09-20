@@ -33,3 +33,8 @@ Clean Code → Design → Architecture
 5. آیا وابستگی‌ها منطقی هستند؟
 6. آیا یک developer دیگر سریع متوجه کد می‌شود؟
 7. اگر فردا این قسمت تغییر کند، چند جای پروژه باید دستکاری شود؟
+
+
+Props Naming Rules
+
+on + EventName
