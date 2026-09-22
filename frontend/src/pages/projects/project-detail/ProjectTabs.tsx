@@ -1,7 +1,9 @@
-import { Building, Database, FileText, LayoutDashboard, Tag } from "lucide-react"
+import { Building, Database, FileText, Tag } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { OverviewTabContent } from "@/pages/projects/project-detail/overview/OverviewTabContent"
 import { KeywordsTabContent } from "@/pages/projects/project-detail/keywords/KeywordsTabContent"
-import { CategoriesTabContent } from "@/pages/projects/project-detail/categories/CategoriesTabContent"
+import { SourcesTabContent } from "@/pages/projects/project-detail/sources/SourcesTabContent"
+import { ContentsTabContent } from "@/pages/projects/project-detail/contents/ContentsTabContent"
 
 
 export const ProjectTabs = () => {
@@ -18,7 +20,7 @@ export const ProjectTabs = () => {
                             <Tag />
                             کلیدواژه‌ها
                         </TabsTrigger>
-                        <TabsTrigger value="source" className="px-5 py-3 text-sm">
+                        <TabsTrigger value="sources" className="px-5 py-3 text-sm">
                             <Database />
                             منابع خزش
                         </TabsTrigger>
@@ -26,15 +28,13 @@ export const ProjectTabs = () => {
                             <FileText />
                             محتواها
                         </TabsTrigger>
-                        {/* <TabsTrigger value="categories" className="px-5 py-3 text-sm">
-                            <LayoutDashboard />
-                            دسته‌بندی‌ها
-                        </TabsTrigger> */}
                     </TabsList>
                 </div>
                 <div className="mt-5">
+                    <TabsContent value="overview"><OverviewTabContent /></TabsContent>
                     <TabsContent value="keywords"><KeywordsTabContent /></TabsContent>
-                    <TabsContent value="categories"><CategoriesTabContent /></TabsContent>
+                    <TabsContent value="sources"><SourcesTabContent /></TabsContent>
+                    <TabsContent value="contents"><ContentsTabContent /></TabsContent>
                 </div>
             </Tabs>
         </div>
