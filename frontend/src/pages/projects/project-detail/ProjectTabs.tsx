@@ -1,8 +1,9 @@
-import { Building, Database, FileText, Tag } from "lucide-react"
+import { Building, Database, FileText, Tag, DatabaseArrowUp } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { OverviewTabContent } from "@/pages/projects/project-detail/overview/OverviewTabContent"
 import { KeywordsTabContent } from "@/pages/projects/project-detail/keywords/KeywordsTabContent"
-import { SourcesTabContent } from "@/pages/projects/project-detail/sources/SourcesTabContent"
+import { ReceiptsTabContent } from "@/pages/projects/project-detail/receipts/ReceiptsTabContent"
+import { SubmissionsTabContent } from "@/pages/projects/project-detail/submissions/SubmissionsTabContent"
 import { ContentsTabContent } from "@/pages/projects/project-detail/contents/ContentsTabContent"
 
 
@@ -20,9 +21,13 @@ export const ProjectTabs = () => {
                             <Tag />
                             کلیدواژه‌ها
                         </TabsTrigger>
-                        <TabsTrigger value="sources" className="px-5 py-3 text-sm">
+                        <TabsTrigger value="receipts" className="px-5 py-3 text-sm">
                             <Database />
                             منابع خزش
+                        </TabsTrigger>
+                        <TabsTrigger value="submissions" className="px-5 py-3 text-sm">
+                            <DatabaseArrowUp />
+                            منابع انتشار
                         </TabsTrigger>
                         <TabsTrigger value="contents" className="px-5 py-3 text-sm">
                             <FileText />
@@ -33,7 +38,8 @@ export const ProjectTabs = () => {
                 <div className="mt-5">
                     <TabsContent value="overview"><OverviewTabContent /></TabsContent>
                     <TabsContent value="keywords"><KeywordsTabContent /></TabsContent>
-                    <TabsContent value="sources"><SourcesTabContent /></TabsContent>
+                    <TabsContent value="receipts"><ReceiptsTabContent /></TabsContent>
+                    <TabsContent value="submissions"><SubmissionsTabContent /></TabsContent>
                     <TabsContent value="contents"><ContentsTabContent /></TabsContent>
                 </div>
             </Tabs>
