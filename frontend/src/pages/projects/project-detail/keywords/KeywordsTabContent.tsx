@@ -18,7 +18,7 @@ export const KeywordsTabContent = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<ApiError | null>(null)
     const [dialogOpen, setDialogOpen] = useState(false)
-    const { projectId } = useParams()
+    const {projectId} = useParams()
 
     const handleKeywordCreated = (keyword: Keyword) => {
         setKeywords(prev => [...prev, keyword])
