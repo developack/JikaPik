@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useParams } from "react-router"
 import { PlusIcon, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
@@ -17,12 +18,13 @@ export const ReceiptsTabContent = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<ApiError | null>(null)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const { projectId } = useParams()
 
     const fetchReceipts = async (): Promise<void> => {
 
         setLoading(true)
         try {
-            const data = await getApi<Receipt[]>("/receipts/")
+            const data = await getApi<Receipt[]>(`/receipts/${projectId}/`)
             setReceipts(data)
 
         } catch (error) {

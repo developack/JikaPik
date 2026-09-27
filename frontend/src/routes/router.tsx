@@ -6,6 +6,7 @@ import { createBrowserRouter } from "react-router"
 import { ProtectedRoutes} from '@/routes/ProtectedRoutes'
 import { ProjectsPage } from '@/pages/projects/ProjectsPage'
 import { ProjectDetailPage } from '@/pages/projects/ProjectDetailPage' 
+import { ContentDetailPage } from '@/pages/projects/project-detail/contents/content-detail/ContentDetailPage'
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,11 @@ export const router = createBrowserRouter([
                     {
                         path: "/projects/:projectId",
                         element: <ProjectDetailPage />
+                    },
+
+                    {
+                        path: "/projects/:projectId/contents/:contentId",
+                        element: <ContentDetailPage />
                     }
                 ]
             },

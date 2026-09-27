@@ -13,7 +13,7 @@ export const useLanguage = () => {
         try {
             const response = await getApi<Language[]>("/languages/")
             setLanguages(response)
-
+  
         } catch (error) {
             console.log(error)
 

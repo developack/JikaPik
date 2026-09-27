@@ -28,7 +28,7 @@ export const ProjectHeader = ({ project }: ProjectHeaderProps) => {
                 <div className="flex items-start justify-between">
                     <div>
                         <div className="flex flex-col gap-1">
-                            <h1 className="text-2xl font-bold flex items-center gap-2">
+                            <h1 className="text-xl font-bold flex items-center gap-2">
                                 {project?.name}
                                 <Badge variant={project?.activity_status ? 'active' : 'destructive'} className="select-none">
                                     <span className={`rounded-full w-[5px] h-[5px] ${project?.activity_status ? 'bg-success' : 'bg-destructive'}`}></span>
@@ -36,9 +36,11 @@ export const ProjectHeader = ({ project }: ProjectHeaderProps) => {
                                 </Badge>
                             </h1>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-text-secondary mt-2">
-                            <Calendar className="size-4" />
-                            <p>تاریخ ایجاد: <span>{formatDate(project?.created)}</span></p>
+                        <div className="text-xs text-text-secondary mt-2">
+                            <div className="flex items-center gap-1">
+                                <Calendar className="size-4" />
+                                <p>تاریخ ایجاد: <span>{formatDate(project?.created)}</span></p>
+                            </div>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
