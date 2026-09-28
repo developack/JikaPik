@@ -48,3 +48,11 @@ export type ReceiptContentDetail = {
 export type ContentDetailHeaderProps = {
     content: ReceiptContentDetail | null
 }
+
+export type ContentDetailSidebarProps = {
+    content: ReceiptContentDetail | null
+}
+
+export type ContentDetailMainProps = {
+    content: ReceiptContentDetail | null
+}
