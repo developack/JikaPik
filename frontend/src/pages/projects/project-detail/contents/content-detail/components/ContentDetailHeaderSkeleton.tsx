@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Button } from "@/components/ui/button"
-import { FileText, Folder, Calendar, EllipsisVertical, Pencil, MoveRight } from "lucide-react"
+import { FileText, FolderClosed, Calendar, EllipsisVertical, Pencil, MoveRight } from "lucide-react"
 
 
 export const ContentDetailHeaderSkeleton = () => {
@@ -31,7 +31,7 @@ export const ContentDetailHeaderSkeleton = () => {
                         </div>
                         <div className="flex items-center gap-5 text-xs text-text-secondary mt-5">
                             <div className="flex items-center gap-1">
-                                <Folder className="size-4" />
+                                <FolderClosed className="size-4" />
                                 <p className="flex items-center gap-2">پروژه: <Skeleton className="w-18 h-5" /></p>
                             </div>
                             <div className="flex items-center gap-1">

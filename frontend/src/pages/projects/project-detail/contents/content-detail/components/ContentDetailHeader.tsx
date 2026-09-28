@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router"
-import { MoveRight, FileText, EllipsisVertical, Calendar, Pencil, Folder } from "lucide-react"
+import { MoveRight, FileText, EllipsisVertical, Calendar, Pencil, FolderClosed } from "lucide-react"
 import type { ContentDetailHeaderProps } from "@/types/contents.types"
 import { formatDate } from "@/utils/date"
 
@@ -32,7 +32,7 @@ export const ContentDetailHeader = ({ content }: ContentDetailHeaderProps) => {
                         </div>
                         <div className="flex items-center gap-5 text-xs text-text-secondary mt-5">
                             <div className="flex items-center gap-1">
-                                <Folder className="size-4" />
+                                <FolderClosed className="size-4" />
                                 <p>پروژه: <span>{content?.project.name}</span></p>
                             </div>
                             <div className="flex items-center gap-1">
