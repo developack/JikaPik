@@ -16,3 +16,8 @@ export type TagInputProps = {
     onChange: (tags: string[]) => void,
     placeholder: string
 }
+
+export type ExpandableTextProps = {
+    className: string,
+    text: string | undefined
+}

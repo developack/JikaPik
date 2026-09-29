@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Bot, WandSparkles, SquareArrowOutUpRight } from "lucide-react"
+import { ExpandableText } from "@/components/ui/expandable-text"
 import type { ContentDetailMainProps } from "@/types/contents.types"
 
 
@@ -30,12 +31,12 @@ export const ContentDetailMain = ({ content }: ContentDetailMainProps) => {
                     <h5 className="font-semibold">{content?.title}</h5>
                     <div className="flex flex-col gap-5 mt-5">
                         <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">خلاصه</span>
+                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">خلاصه</span>
                             <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.summary}</p>
                         </div>
                         <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">محتوای اصلی</span>
-                            <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.details}</p>
+                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">محتوای اصلی</span>
+                            <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.details} />
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ export const ContentDetailMain = ({ content }: ContentDetailMainProps) => {
                         </div>
                         <div className="relative">
                             <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">محتوای اصلی</span>
-                            <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.ai_content.details}</p>
+                            <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.ai_content.details} />
                         </div>
                     </div>
                 </div>
