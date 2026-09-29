@@ -51,8 +51,10 @@ export type ContentDetailHeaderProps = {
 
 export type ContentDetailSidebarProps = {
     content: ReceiptContentDetail | null
+    loading: boolean
 }
 
 export type ContentDetailMainProps = {
     content: ReceiptContentDetail | null
+    loading: boolean
 }

@@ -2,10 +2,13 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Bot, WandSparkles, SquareArrowOutUpRight } from "lucide-react"
 import { ExpandableText } from "@/components/ui/expandable-text"
+import { ContentDetailMainSkeleton } from "./ContentDetailMainSkeleton"
 import type { ContentDetailMainProps } from "@/types/contents.types"
 
 
-export const ContentDetailMain = ({ content }: ContentDetailMainProps) => {
+export const ContentDetailMain = ({ content, loading }: ContentDetailMainProps) => {
+    console.log(loading)
+
     return (
         <div className="flex flex-col gap-5">
             <div className="bg-surface rounded-lg border">
@@ -27,19 +30,21 @@ export const ContentDetailMain = ({ content }: ContentDetailMainProps) => {
                         مشاهده منبع
                     </Button>
                 </div>
-                <div className="p-5">
-                    <h5 className="font-semibold">{content?.title}</h5>
-                    <div className="flex flex-col gap-5 mt-5">
-                        <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">خلاصه</span>
-                            <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.summary}</p>
-                        </div>
-                        <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">محتوای اصلی</span>
-                            <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.details} />
+                {loading ? (<ContentDetailMainSkeleton />) : (
+                    <div className="p-5">
+                        <h5 className="font-semibold">{content?.title}</h5>
+                        <div className="flex flex-col gap-5 mt-5">
+                            <div className="relative">
+                                <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">خلاصه</span>
+                                <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.summary}</p>
+                            </div>
+                            <div className="relative">
+                                <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px] z-[1]">محتوای اصلی</span>
+                                <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.details} />
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
             <div className="bg-surface rounded-lg border">
                 <div className="flex items-center justify-between p-5 border-b">
@@ -60,19 +65,21 @@ export const ContentDetailMain = ({ content }: ContentDetailMainProps) => {
                         مشاهده جزئیات
                     </Button>
                 </div>
-                <div className="p-5">
-                    <h5 className="font-semibold">{content?.ai_content.title}</h5>
-                    <div className="flex flex-col gap-5 mt-5">
-                        <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">خلاصه</span>
-                            <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.ai_content.summary}</p>
-                        </div>
-                        <div className="relative">
-                            <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">محتوای اصلی</span>
-                            <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.ai_content.details} />
+                {loading ? (<ContentDetailMainSkeleton />) : (
+                    <div className="p-5">
+                        <h5 className="font-semibold">{content?.ai_content.title}</h5>
+                        <div className="flex flex-col gap-5 mt-5">
+                            <div className="relative">
+                                <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">خلاصه</span>
+                                <p className="text-text-secondary text-sm border p-4 rounded-lg leading-7">{content?.ai_content.summary}</p>
+                            </div>
+                            <div className="relative">
+                                <span className="text-sm absolute bg-surface px-2.5 top-[-8px] right-[10px]">محتوای اصلی</span>
+                                <ExpandableText className="text-text-secondary text-sm border p-4 rounded-lg leading-7" text={content?.ai_content.details} />
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     )

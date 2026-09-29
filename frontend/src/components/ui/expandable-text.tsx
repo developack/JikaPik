@@ -29,7 +29,7 @@ export const ExpandableText = ({ className, text }: ExpandableTextProps) => {
                         <div>
                             <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-surface to-transparent" />
                             <div className="absolute inset-x-0 bottom-4 flex justify-center">
-                                <Button className="relative z-10" onClick={handleToggle} variant="secondary">
+                                <Button onClick={handleToggle} variant="secondary">
                                     <Eye className="size-5" />
                                     ادامه مطلب
                                 </Button>

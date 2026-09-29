@@ -1,12 +1,13 @@
 import { Link } from "react-router"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 import { FolderClosed, FolderOpen, ChevronLeft, Tag, CircleDot, Clock, Layers, MapPinSearch, CircleCheck } from "lucide-react"
 import type { ContentDetailSidebarProps } from "@/types/contents.types"
 import { formatDate } from "@/utils/date"
 
 
-export const ContentDetailSidebar = ({ content }: ContentDetailSidebarProps) => {
+export const ContentDetailSidebar = ({ content, loading }: ContentDetailSidebarProps) => {
     return (
         <aside className="flex flex-col gap-5 sticky top-[81px]">
             <div className="bg-surface rounded-lg border">
@@ -22,40 +23,50 @@ export const ContentDetailSidebar = ({ content }: ContentDetailSidebarProps) => 
                         <Clock className="size-5" />
                         <div className="flex flex-col gap-1 text-sm text-text-secondary">
                             انتشار در تاریخ
-                            <span className="text-xs text-text">{formatDate(content?.created)}</span>
+                            {loading ? <Skeleton className="w-[85px] h-4" /> : (
+                                <span className="text-xs text-text">{formatDate(content?.created)}</span>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-start gap-2">
                         <Layers className="size-5" />
                         <div className="flex flex-col gap-1 text-sm text-text-secondary">
                             منتشر شده در
-                            <span className="text-xs text-text">{content?.reference_config.name}</span>
+                            {loading ? <Skeleton className="w-[85px] h-4" /> : (
+                                <span className="text-xs text-text">{content?.reference_config.name}</span>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-start gap-2">
                         <MapPinSearch className="size-5" />
                         <div className="flex flex-col gap-1 text-sm text-text-secondary">
                             آدرس منبع
-                            {content?.reference_config.url && <Link target="_blank" to={content?.reference_config.url}>
-                                <Badge variant="secondary">{content?.reference_config.url}</Badge>
-                            </Link>}
+                            {loading ? <Skeleton className="w-[150px] h-5" /> : (
+                                content?.reference_config.url && <Link target="_blank" to={content?.reference_config.url}>
+                                    <Badge variant="secondary">{content?.reference_config.url}</Badge>
+                                </Link>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-start gap-2">
                         <CircleCheck className="size-5" />
                         <div className="flex flex-col gap-1 text-sm text-text-secondary">
                             وضعیت منبع
-                            <Badge variant={content?.reference_config?.activity_status ? 'active' : 'destructive'} className="select-none">
-                                <span className={`rounded-full w-[5px] h-[5px] ${content?.reference_config?.activity_status ? 'bg-success' : 'bg-destructive'}`}></span>
-                                {content?.reference_config?.activity_status ? 'فعال' : 'غیرفعال'}
-                            </Badge>
+                            {loading ? <Skeleton className="w-[70px] h-5" /> : (
+                                <Badge variant={content?.reference_config?.activity_status ? 'active' : 'destructive'} className="select-none">
+                                    <span className={`rounded-full w-[5px] h-[5px] ${content?.reference_config?.activity_status ? 'bg-success' : 'bg-destructive'}`}></span>
+                                    {content?.reference_config?.activity_status ? 'فعال' : 'غیرفعال'}
+                                </Badge>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-start gap-2">
                         <Clock className="size-5" />
                         <div className="flex flex-col gap-1 text-sm text-text-secondary">
                             آخرین بروزرسانی
-                            <span className="text-xs text-text">{formatDate(content?.updated)}</span>
+                            {loading ? <Skeleton className="w-[85px] h-4" /> : (
+                                <span className="text-xs text-text">{formatDate(content?.updated)}</span>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -68,9 +79,15 @@ export const ContentDetailSidebar = ({ content }: ContentDetailSidebarProps) => 
                 </div>
                 <div className="flex items-start justify-between p-4">
                     <div className="flex flex-wrap gap-3">
-                        {content?.related_keywords.map((keyword) => (
-                            <Badge variant="secondary">{keyword}</Badge>
-                        ))}
+                        {loading ? (
+                            Array.from({ length: 5 }).map((_, index) => (
+                                <Skeleton key={index} className="h-5 w-[65px]" />
+                            ))
+                        ) : (
+                            content?.related_keywords.map((keyword) => (
+                                <Badge variant="secondary">{keyword}</Badge>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>
@@ -86,8 +103,14 @@ export const ContentDetailSidebar = ({ content }: ContentDetailSidebarProps) => 
                             <FolderOpen className="size-8=7 stroke-white" />
                         </span>
                         <div className="flex flex-col gap-1">
-                            <h5 className="font-semibold text-sm">{content?.project.name}</h5>
-                            <p className="text-text-secondary text-xs">تاریخ ایجاد: <span>{formatDate(content?.created)}</span></p>
+                            {loading ? (<Skeleton className="w-[100px] h-5" />) : (
+                                <h5 className="font-semibold text-sm">{content?.project.name}</h5>
+                            )}
+                            <p className="text-text-secondary text-xs flex items-center gap-1.5">تاریخ ایجاد: {loading ? (
+                                <Skeleton className="w-[50px] h-4" />
+                            ) : (
+                                <span>{formatDate(content?.created)}</span>
+                            )}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
