@@ -70,7 +70,7 @@ export const SubmissionsTabContent = () => {
                     <h2 className="text-xl font-bold">منابع انتشار</h2>
                     <p className="text-text-secondary text-sm">منابع انتشار را برای این پروژه مدیریت کنید</p>
                 </div>
-                <Button onClick={() => setDialogOpen(true)}>
+                <Button onClick={() => setDialogOpen(true)} disabled>
                     <PlusIcon className="size-4" />
                     افزودن منبع
                 </Button>

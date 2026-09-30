@@ -45,12 +45,12 @@ export const ContentsTable = ({ contents }: ContentsTableProps) => {
                             </TableCell>
                             <TableCell>{formatDate(content.created)}</TableCell>
                             <TableCell className="flex items-center gap-2">
-                                <Button size="icon-sm" variant="outline">
+                                <Button size="icon-sm" variant="outline" disabled>
                                     <Link to="/project">
                                         <Pencil />
                                     </Link>
                                 </Button>
-                                <Button size="icon-sm" variant="ghost">
+                                <Button size="icon-sm" variant="ghost" disabled>
                                     <EllipsisVertical />
                                 </Button>
                             </TableCell>

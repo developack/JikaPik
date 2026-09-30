@@ -14,7 +14,7 @@ export const ProjectHeaderSkeleton = () => {
                         بازگشت به پروژه‌ها
                     </Link>
                 </Button>
-                <Button>
+                <Button disabled>
                     <Pencil />
                     ویرایش پروژه
                 </Button>

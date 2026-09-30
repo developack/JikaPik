@@ -70,9 +70,9 @@ export const ContentsTabContent = () => {
                     <h2 className="text-xl font-bold">محتواها</h2>
                     <p className="text-text-secondary text-sm">محتواهای این پروژه مدیریت کنید</p>
                 </div>
-                <Button onClick={() => setDialogOpen(true)}>
+                <Button onClick={() => setDialogOpen(true)} disabled>
                     <PlusIcon className="size-4" />
-                    افزودن منبع
+                    افزودن محتوا
                 </Button>
             </header>
             {/* <NewContentDialog open={dialogOpen} onOpenChange={setDialogOpen} onReceiptCreated={handleReceiptCreated} /> */}

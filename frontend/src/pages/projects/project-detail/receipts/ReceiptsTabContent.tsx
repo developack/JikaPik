@@ -70,7 +70,7 @@ export const ReceiptsTabContent = () => {
                     <h2 className="text-xl font-bold">منابع خزش</h2>
                     <p className="text-text-secondary text-sm">منابع خزش را برای این پروژه مدیریت کنید</p>
                 </div>
-                <Button onClick={() => setDialogOpen(true)}>
+                <Button onClick={() => setDialogOpen(true)} disabled>
                     <PlusIcon className="size-4" />
                     افزودن منبع
                 </Button>

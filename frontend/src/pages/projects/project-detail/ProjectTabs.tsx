@@ -11,7 +11,7 @@ export const ProjectTabs = () => {
     return (
         <div className="mt-5">
             <Tabs defaultValue="keywords">
-                <div className="border-b">
+                <div className="border-b overflow-x-auto overflow-y-hidden">
                     <TabsList variant="line" className="h-12!">
                         <TabsTrigger value="overview" className="px-5 py-3 text-sm">
                             <Building />

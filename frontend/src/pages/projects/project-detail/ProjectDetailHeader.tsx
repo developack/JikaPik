@@ -16,7 +16,7 @@ export const ProjectHeader = ({ project }: ProjectHeaderProps) => {
                         بازگشت به پروژه‌ها
                     </Link>
                 </Button>
-                <Button>
+                <Button disabled>
                     <Pencil />
                     ویرایش پروژه
                 </Button>
@@ -44,7 +44,7 @@ export const ProjectHeader = ({ project }: ProjectHeaderProps) => {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Button variant="outline" size="icon">
+                        <Button variant="outline" size="icon" disabled>
                             <EllipsisVertical className="size-4" />
                         </Button>
                     </div>

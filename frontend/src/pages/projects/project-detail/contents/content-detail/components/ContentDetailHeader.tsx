@@ -15,7 +15,7 @@ export const ContentDetailHeader = ({ content }: ContentDetailHeaderProps) => {
                         بازگشت به پروژه
                     </Link>
                 </Button>
-                <Button>
+                <Button disabled>
                     <Pencil />
                     ویرایش محتوا
                 </Button>
@@ -24,28 +24,31 @@ export const ContentDetailHeader = ({ content }: ContentDetailHeaderProps) => {
                 <span className="bg-primary rounded-lg p-2.5 flex w-fit">
                     <FileText className="size-10 stroke-white" />
                 </span>
-                <div className="flex items-start justify-between">
-                    <div>  
-                        <div className="flex flex-col gap-2">
-                            <h1 className="text-xl font-bold flex items-center gap-2">{content?.title}</h1>
-                            <p className="text-sm text-text-secondary truncate max-w-[60rem]">{content?.summary}</p>
+                <div className="flex min-w-0 items-start justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                        <div className="flex min-w-0 flex-col gap-2">
+                            <h1 className="text-xl font-bold truncate">{content?.title}</h1>
+                            <p className="min-w-0 truncate text-sm text-text-secondary">{content?.summary}</p>
                         </div>
-                        <div className="flex items-center gap-5 text-xs text-text-secondary mt-5">
-                            <div className="flex items-center gap-1">
-                                <FolderClosed className="size-4" />
-                                <p>پروژه: <span>{content?.project.name}</span></p>
+                        <div className="mt-5 flex min-w-0 flex-wrap items-center gap-x-5 gap-y-2 text-xs text-text-secondary">
+                            <div className="flex min-w-0 max-w-full items-center gap-1">
+                                <FolderClosed className="size-4 shrink-0" />
+                                <p className="min-w-0 truncate">
+                                    پروژه: <span>{content?.project.name}</span>
+                                </p>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <Calendar className="size-4" />
-                                <p>تاریخ ایجاد: <span>{formatDate(content?.created)}</span></p>
+
+                            <div className="flex min-w-0 max-w-full items-center gap-1">
+                                <Calendar className="size-4 shrink-0" />
+                                <p className="min-w-0 truncate">
+                                    تاریخ ایجاد: <span>{formatDate(content?.created)}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Button variant="outline" size="icon">
-                            <EllipsisVertical className="size-4" />
-                        </Button>
-                    </div>
+                    <Button variant="outline" size="icon" disabled className="shrink-0">
+                        <EllipsisVertical className="size-4" />
+                    </Button>
                 </div>
             </div>
         </header>

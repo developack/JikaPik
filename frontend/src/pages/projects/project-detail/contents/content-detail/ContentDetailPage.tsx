@@ -51,7 +51,7 @@ export const ContentDetailPage = () => {
         <PanelLayout>
             <section>
                 {loading ? <ContentDetailHeaderSkeleton /> : <ContentDetailHeader content={content} />}
-                <div className="grid grid-cols-[3fr_1fr] items-start gap-5 mt-5">
+                <div className="grid grid-cols-1 items-start gap-5 mt-5 xl:grid-cols-[3fr_1fr]">
                     <ContentDetailMain content={content} loading={loading} />
                     <ContentDetailSidebar content={content} loading={loading} />
                 </div>

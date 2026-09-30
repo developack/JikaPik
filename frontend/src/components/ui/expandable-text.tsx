@@ -20,8 +20,8 @@ export const ExpandableText = ({ className, text }: ExpandableTextProps) => {
     }, [text])
 
     return (
-        <div className={`relative ${className}`}>
-            <p className={`${!expanded && "max-h-[300px] overflow-hidden"}`} ref={contentElement}>{text}</p>
+        <div className={`relative overflow-hidden ${className}`}>
+            <p className={`${!expanded && "max-h-[300px]"}`} ref={contentElement}>{text}</p>
 
             {isOverflowing && (
                 <>
