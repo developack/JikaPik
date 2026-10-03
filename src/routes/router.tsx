@@ -1,12 +1,16 @@
 import { App } from '@/App'
+import { Navigate } from 'react-router'
 import { LoginPage } from '@/pages/LoginPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { createBrowserRouter } from "react-router"
-import { ProtectedRoutes} from '@/routes/ProtectedRoutes'
+import { ProtectedRoutes } from '@/routes/ProtectedRoutes'
 import { ProjectsPage } from '@/pages/projects/ProjectsPage'
-import { ProjectDetailPage } from '@/pages/projects/ProjectDetailPage' 
+import { ProjectDetailPage } from '@/pages/projects/ProjectDetailPage'
 import { ContentDetailPage } from '@/pages/projects/project-detail/contents/content-detail/ContentDetailPage'
+
+import { OverviewTabContent } from '@/pages/projects/project-detail/overview/OverviewTabContent'
+import { KeywordsTabContent } from '@/pages/projects/project-detail/keywords/KeywordsTabContent'
 
 
 export const router = createBrowserRouter([
@@ -33,7 +37,12 @@ export const router = createBrowserRouter([
 
                     {
                         path: "/projects/:projectId",
-                        element: <ProjectDetailPage />
+                        element: <ProjectDetailPage />,
+                    },
+
+                    {
+                        path: "/projects/:projectId/:tab",
+                        element: <ProjectDetailPage />,
                     },
 
                     {

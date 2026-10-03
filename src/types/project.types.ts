@@ -21,3 +21,5 @@ export type ProjectsTableProps = {
 export type ProjectHeaderProps = {
     project: Project | null
 }
+
+export type ProjectDetailPageTabs = "overview" | "keywords" | "receipts" | "submissions" | "contents"

@@ -38,3 +38,11 @@ Clean Code → Design → Architecture
 Props Naming Rules
 
 on + EventName
+
+-tasks
+--add shadcn drawer components for responsive dialog
+--change url when switching between tabs in projects detail page
+--handle pagination for every table
+--handle showing number of records in table
+--create abstraction for error systems in frontend and react system
+--using tanstack query for optimizing api requests

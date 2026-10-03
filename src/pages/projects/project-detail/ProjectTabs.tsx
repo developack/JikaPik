@@ -8,6 +8,7 @@ import { ContentsTabContent } from "@/pages/projects/project-detail/contents/Con
 
 
 export const ProjectTabs = () => {
+
     return (
         <div className="mt-5">
             <Tabs defaultValue="keywords">
